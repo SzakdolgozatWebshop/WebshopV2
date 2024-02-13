@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 function LoginForm() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,8 +15,9 @@ function LoginForm() {
                 email: email,
                 password: password
             });
-            console.log("asdasds");
-            navigate('/home');
+            console.log("asadsdas");
+            
+            //navigate('/admin');
             // Handle successful login (e.g., redirect to dashboard)
         } catch (error) {
             console.error('Login failed:', error);
@@ -36,6 +39,8 @@ function LoginForm() {
                 <button type="submit">Login</button>
             </form>
         </div>
+
+
     );
 }
 
