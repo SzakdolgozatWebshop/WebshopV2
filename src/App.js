@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+//import LoginForm from './Login';
+//import RegForm from './Reg';
 
 function App() {
   return (
