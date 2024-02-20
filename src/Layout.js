@@ -8,11 +8,17 @@ const Layout = () => {
       <nav>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <Link className="nav-link active" to="/">Fő oldal</Link>
+            <Link className="nav-link active" to="/">Főoldal</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link active" to="keszlet">Keszlet</Link>
           </li>
+          <li className="nav-item">
+          <Link className="nav-link active" to="Rendeles">Rendeles</Link>
+        </li>
+        <li className="nav-item">
+        <Link className="nav-link active" to="Profil">Profil</Link>
+      </li>
         </ul>
       </nav>
       <article>

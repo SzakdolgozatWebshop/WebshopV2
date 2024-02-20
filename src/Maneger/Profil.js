@@ -1,31 +1,20 @@
-export default function Keszlet() {
+export default function Profil() {
   return (
-
     <div className="App">
-      Termék Lista
-      <div className="container mt-3">
-      <table className="table table-bordered ">
-        <tr>
-          <th>Termék ID</th>
-          <th>Termék Neve</th>
-          <th>Leirás</th>
-          <th>Mennyiség</th>
-          <th>Ára</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Predator</td>
-          <td>Laptop</td>
-          <td>1</td>
-          <td>50000</td>
-          <td><button type="button" onClick={Leiras} className="btn btn-danger">Bővebben</button></td>
-        </tr>
-      </table>
-      </div>
+      Profil
+      
+        <div className="card" style={{ paddingTop: "60px" }}>
+          <h1>$user_name</h1>
+          <p class="title">$jogosultsag</p>
+          <button onClick={JelszoModal} className="modal-header">
+            Jelszó Módosítása
+          </button>
+          
+        </div>
+      
       <from action="/action_page.php" method="post">
       <div
-        id="LeirasModal"
+        id="jelszoModal"
         style={{ display: "none" }}
         className="modal"
       >
@@ -61,7 +50,7 @@ export default function Keszlet() {
             <button
               type="button"
               className="btn btn-danger"
-              onClick={LeirasBezar}
+              onClick={JelszoBezar}
             >
               Close
             </button>
@@ -73,10 +62,10 @@ export default function Keszlet() {
     </div>
     
   );
-}
-function Leiras(){
-  document.getElementById("LeirasModal").style.display = "block";
-}
-function LeirasBezar() {
-  document.getElementById("LeirasModal").style.display = "none";
+  function JelszoModal() {
+    document.getElementById("jelszoModal").style.display = "block";
+  }
+  function JelszoBezar() {
+    document.getElementById("jelszoModal").style.display = "none";
+  }
 }
