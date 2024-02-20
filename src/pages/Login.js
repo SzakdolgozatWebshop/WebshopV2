@@ -1,28 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router';
+import useAuthContext from '../context/AuthContext';
 
 function LoginForm() {
-    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const {login} = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await axios.post('http://localhost:8000/login', {
-                email: email,
-                password: password
-            });
-            console.log("asadsdas");
-            
-            //navigate('/admin');
-            // Handle successful login (e.g., redirect to dashboard)
-        } catch (error) {
-            console.error('Login failed:', error);
-            // Handle login error (e.g., display error message)
-        }
+        login({email, password});
     };
 
     return (

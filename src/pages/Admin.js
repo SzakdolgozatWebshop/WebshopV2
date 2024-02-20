@@ -1,20 +1,17 @@
+import { useEffect } from "react";
+import useAuthContext from "../context/AuthContext";
 
-function Admin(){
-    /* useEffect(() => {
-        try {
-            
-            const resp = axios.get('http://localhost:8000/api/user');
-            console.log(resp.data);
-        } catch (error) {
-            console.error('Failed to fetch user data:', error);
+const Admin = () => {
+
+    const { user, getUser } = useAuthContext();
+
+    useEffect(() => {
+        if (!user) {
+            getUser();
         }
-    }, []); */
+    }, []);
 
-    return(
-        <div>
-            <p>adasd</p>
-        </div>
-    )
 
+    return <div>{user?.email}</div>
 }
 export default Admin
