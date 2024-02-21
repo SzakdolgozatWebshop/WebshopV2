@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post("/logout");
+      setUser(null);
       navigate("/");
     } catch (error) {
       console.log("Logout failed: ", error);
