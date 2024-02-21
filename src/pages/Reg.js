@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import useAuthContext from '../context/AuthContext';
 
 function RegForm() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password_confirmation, setPasswordConfirmation] = useState('');
+    const {register} = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,24 +16,7 @@ function RegForm() {
             // Handle password mismatch error (e.g., display error message)
             return;
         }
-        try {
-            await axios.post('http://localhost:8000/register', {
-                name: name,
-                email: email,
-                password: password,
-                password_confirmation: password_confirmation
-            });
-            console.log("Registration successful.");
-            // Handle successful registration (e.g., redirect to dashboard)
-        } catch (error) {
-            if (error.response) {
-                console.error('Registration request failed with validation errors:', error.response.data);
-                // Handle validation errors (e.g., display error messages to the user)
-            } else {
-                console.error('Registration request failed:', error.message);
-                // Handle other types of errors (e.g., network errors)
-            }
-        }
+        register({name, email, password, password_confirmation}, {email, password});
     };
 
     return (

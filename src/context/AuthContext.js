@@ -39,8 +39,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const register = async ({ ...data }, {...lData}) => {
+    try {
+      await axios.post("http://localhost:8000/register", data);
+      console.log("Registration successful.");
+      // Handle successful registration (e.g., redirect to dashboard)
+        login(lData);
+      navigate("/");
+    } catch (error) {
+      if (error.response) {
+        console.error(
+          "Registration request failed with validation errors:",
+          error.response.data
+        );
+        // Handle validation errors (e.g., display error messages to the user)
+      } else {
+        console.error("Registration request failed:", error.message);
+        // Handle other types of errors (e.g., network errors)
+      }
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, getUser }}>
+    <AuthContext.Provider value={{ user, login, logout, getUser, register }}>
       {children}
     </AuthContext.Provider>
   );
