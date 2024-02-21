@@ -5,12 +5,17 @@ function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {login} = useAuthContext();
+    const {logout} = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         login({email, password});
     };
 
+
+    const handleLogout = async () =>{
+        logout();
+    }
     return (
         <div className="App">
             <form onSubmit={handleSubmit}>
@@ -24,6 +29,7 @@ function LoginForm() {
                 </label>
                 <button type="submit">Login</button>
             </form>
+            <button onClick={handleLogout}>Logout</button>
         </div>
 
 
