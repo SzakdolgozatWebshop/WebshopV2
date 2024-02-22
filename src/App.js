@@ -9,8 +9,10 @@ import Profil from "./Maneger/Profil";
 function App() {
   return (
     <div>
+      <nav>
       <BrowserRouter>
         <Routes>
+
           <Route path="/" element={<Layout />}>
             <Route index element={<Foldal />} />
             <Route path="keszlet" element={<Keszlet />} />
@@ -19,6 +21,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </nav>
     </div>
   );
 }

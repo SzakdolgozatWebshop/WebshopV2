@@ -4,6 +4,7 @@ export default function Rendeles() {
       Rendelések
       <div className="container mt-3">
         <table className="table table-bordered">
+        <tbody>
           <tr>
             <th>ID</th>
             <th>Felhasználó</th>
@@ -24,14 +25,16 @@ export default function Rendeles() {
               </button>
             </td>
           </tr>
+          </tbody>
         </table>
       </div>
-      <from action="/action_page.php" method="post">
+      <form action="/action_page.php" method="post">
         <div id="RendelesModal" style={{ display: "none" }} className="modal ">
-          <div class="modal-dialog">
+          <div className="modal-dialog">
           <div className="modal-content" style={{backgroundColor:"gray"}}>
-            <div class="modal-header" >
+            <div className="modal-header" >
               <table className="table table-bordered">
+              <tbody>
                 <tr>
                   <th>Termék ID:</th>
                   <th>Termék Márka:</th>
@@ -56,6 +59,7 @@ export default function Rendeles() {
                     
                   </td>
                 </tr>
+                </tbody>
               </table>
               <p style={{ paddingTop: "10px" }}>
                 <button type="submit" className="btn btn-danger">
@@ -63,7 +67,7 @@ export default function Rendeles() {
                 </button>
               </p>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
                 className="btn btn-danger"
@@ -75,7 +79,7 @@ export default function Rendeles() {
           </div>
           </div>
         </div>
-      </from>
+      </form>
     </div>
   );
 }

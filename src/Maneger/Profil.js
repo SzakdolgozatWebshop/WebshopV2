@@ -3,27 +3,32 @@ export default function Profil() {
     <div className="App">
       Profil
       
-        <div className="card" style={{ paddingTop: "60px" }}>
+        <div  className="container "style={{ paddingTop: "60px" }}>
           <h1>$user_name</h1>
-          <p class="title">$jogosultsag</p>
-          <button onClick={JelszoModal} className="modal-header">
+          <p className="title">$jogosultsag</p>
+          <div style={{
+            marginLeft: "45%",
+
+          }}>
+          <button onClick={JelszoModal} className="modal-header mt-4  ">
             Jelszó Módosítása
           </button>
+          </div>
           
         </div>
       
-      <from action="/action_page.php" method="post">
+      <form action="/action_page.php" method="post">
       <div
         id="jelszoModal"
-        style={{ display: "none" }}
-        className="modal"
+
+        className="modal mt-3"
       >
-      <div class="modal-dialog"></div>
-        <div className="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Jelszó modositása</h4>
+      <div className="modal-dialog "></div>
+        <div className="modal-content ">
+          <div className="modal-header">
+            <h4 className="modal-title ">Jelszó modositása</h4>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             <p style={{ paddingTop: "5px" }}>Jelszó régi jelszó</p>
             <input
               type="password"
@@ -46,7 +51,7 @@ export default function Profil() {
               <button type="submit" className="btn btn-danger">Küldés</button>
             </p>
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               type="button"
               className="btn btn-danger"
@@ -58,7 +63,7 @@ export default function Profil() {
          
         </div>
       </div>
-      </from>
+      </form>
     </div>
     
   );

@@ -11,7 +11,7 @@ const Layout = () => {
             <Link className="nav-link active" to="/">Főoldal</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" to="keszlet">Keszlet</Link>
+            <Link className="nav-link active" to="keszlet">Termék Lista</Link>
           </li>
           <li className="nav-item">
           <Link className="nav-link active" to="Rendeles">Rendeles</Link>

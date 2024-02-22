@@ -5,6 +5,7 @@ export default function Keszlet() {
       Termék Lista
       <div className="container mt-3">
       <table className="table table-bordered ">
+        <tbody>
         <tr>
           <th>Termék ID</th>
           <th>Termék Neve</th>
@@ -21,20 +22,21 @@ export default function Keszlet() {
           <td>50000</td>
           <td><button type="button" onClick={Leiras} className="btn btn-danger">Bővebben</button></td>
         </tr>
+        </tbody>
       </table>
       </div>
-      <from action="/action_page.php" method="post">
+      <form action="/action_page.php" method="post">
       <div
         id="LeirasModal"
         style={{ display: "none" }}
         className="modal"
       >
-      <div class="modal-dialog"></div>
+      <div className="modal-dialog"></div>
         <div className="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Jelszó modositása</h4>
+          <div className="modal-header">
+            <h4 className="modal-title">Jelszó modositása</h4>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             <p style={{ paddingTop: "5px" }}>Jelszó régi jelszó</p>
             <input
               type="password"
@@ -57,7 +59,7 @@ export default function Keszlet() {
               <button type="submit" className="btn btn-danger">Küldés</button>
             </p>
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               type="button"
               className="btn btn-danger"
@@ -69,7 +71,7 @@ export default function Keszlet() {
          
         </div>
       </div>
-      </from>
+      </form>
     </div>
     
   );
