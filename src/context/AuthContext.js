@@ -19,11 +19,8 @@ export const AuthProvider = ({ children }) => {
   const login = async ({ ...data }) => {
     try {
       await axios.get("http://localhost:8000/sanctum/csrf-cookie");
-      console.log("asadsdas-14");
       await axios.post("http://localhost:8000/login", data);
-      console.log("asadsdas0");
       getUser();
-      console.log("asadsdas");
       navigate("/admin");
     } catch (error) {
       console.error("Login failed:", error);
@@ -40,12 +37,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async ({ ...data }, {...lData}) => {
+  const register = async ({ ...data }) => {
     try {
       await axios.post("http://localhost:8000/register", data);
       console.log("Registration successful.");
       // Handle successful registration (e.g., redirect to dashboard)
-        login(lData);
       navigate("/");
     } catch (error) {
       if (error.response) {

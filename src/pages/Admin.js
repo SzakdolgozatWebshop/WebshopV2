@@ -4,9 +4,9 @@ import useAuthContext from "../context/AuthContext";
 const Admin = () => {
 
     const { user, getUser } = useAuthContext();
-
+    console.log(user);
     useEffect(() => {
-        if (!user) {
+        if (user) {
             getUser();
         }
     }, []);

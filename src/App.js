@@ -1,5 +1,5 @@
-import LoginForm from "./pages/Login";
-import RegForm from "./pages/Reg";
+import LoginForm from "./user_auth/Login";
+import RegForm from "./user_auth/Reg";
 import Layout from "./pages/Layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";

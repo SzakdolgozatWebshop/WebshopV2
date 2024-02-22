@@ -16,7 +16,7 @@ function RegForm() {
             // Handle password mismatch error (e.g., display error message)
             return;
         }
-        register({name, email, password, password_confirmation}, {email, password});
+        register({name, email, password, password_confirmation});
     };
 
     return (
