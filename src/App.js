@@ -8,6 +8,9 @@ import Public from "./pages/Public";
 import Dashboard from "./pages/Dashboard";
 import AuthLayout from "./layouts/AuthLayout";
 import GuestLayout from "./layouts/GusetLayout";
+import Rendeles from "./Maneger/Rendelesek";
+import Keszlet from "./Maneger/Keszlet";
+import Profil from "./Maneger/Profil";
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
       <Routes>
         <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Public />} />
+        <Route path="/Rendelesek" element={<Rendeles />} />
+        <Route path="/keszlet" element={<Keszlet />} />
+        <Route path="/profil" element={<Profil />} />
+
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegForm />} />
