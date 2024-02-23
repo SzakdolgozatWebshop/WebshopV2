@@ -1,68 +1,83 @@
-import axios from "../api/axios.js";
-import { async } from "q";
-import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+  import axios from "../api/axios.js";
+  import { async } from "q";
+  import { createContext, useContext, useEffect, useState } from "react";
+  import { useNavigate } from "react-router";
 
-const AuthContext = createContext({});
+  const AuthContext = createContext({});
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-  //const csrf = () => axios.get("http://localhost:8000/sanctum/csrf-cookie");
-
-  const getUser = async () => {
-    const { data } = await axios.get("http://localhost:8000/api/user");
-    setUser(data);
-  };
-
-  const login = async ({ ...data }) => {
-    try {
-      await axios.get("http://localhost:8000/sanctum/csrf-cookie");
-      await axios.post("http://localhost:8000/login", data);
-      getUser();
-      navigate("/admin");
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
-
-  const logout = async () => {
-    try {
-      await axios.post("/logout");
-      setUser(null);
-      navigate("/");
-    } catch (error) {
-      console.log("Logout failed: ", error);
-    }
-  };
-
-  const register = async ({ ...data }) => {
-    try {
-      await axios.post("http://localhost:8000/register", data);
-      console.log("Registration successful.");
-      // Handle successful registration (e.g., redirect to dashboard)
-      navigate("/");
-    } catch (error) {
-      if (error.response) {
-        console.error(
-          "Registration request failed with validation errors:",
-          error.response.data
-        );
-        // Handle validation errors (e.g., display error messages to the user)
-      } else {
-        console.error("Registration request failed:", error.message);
-        // Handle other types of errors (e.g., network errors)
+    useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
       }
-    }
-  };
+    }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout, getUser, register }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-export default function useAuthContext() {
-  return useContext(AuthContext);
-}
+    const csrf = () => axios.get("http://localhost:8000/sanctum/csrf-cookie");
+
+    const getUser = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:8000/api/user");
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    const login = async ({ ...data }) => {
+      await csrf();
+      try {
+        await axios.post("http://localhost:8000/api/login", data);
+        await getUser();
+        navigate("/dashboard");
+      } catch (error) {
+        setError(error);
+        console.error("Login failed:", error);
+      }
+    };
+
+    const logout = async () => {
+      try {
+        await axios.post("/logout");
+        setUser(null);
+        localStorage.removeItem("user");
+        navigate("/");
+      } catch (error) {
+        console.log("Logout failed: ", error);
+      }
+    };
+
+    const register = async ({ ...data }) => {
+      try {
+        await axios.post("http://localhost:8000/register", data);
+        console.log("Registration successful.");
+        // Handle successful registration (e.g., redirect to dashboard)
+        navigate("/succreg");
+      } catch (error) {
+        if (error.response) {
+          console.error(
+            "Registration request failed with validation errors:",
+            error.response.data
+          );
+          // Handle validation errors (e.g., display error messages to the user)
+        } else {
+          console.error("Registration request failed:", error.message);
+          // Handle other types of errors (e.g., network errors)
+        }
+      }
+    };
+
+    return (
+      <AuthContext.Provider value={{ user, login, logout, getUser, register, error }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  };
+  export default function useAuthContext() {
+    return useContext(AuthContext);
+  }

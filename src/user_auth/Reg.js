@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import useAuthContext from '../context/AuthContext';
+import Layout from '../Layout';
 
 function RegForm() {
     const [name, setName] = useState('');
@@ -21,6 +21,7 @@ function RegForm() {
 
     return (
         <div className="App">
+            <Layout/>
             <form onSubmit={handleSubmit}>
                 <label>
                     Name:

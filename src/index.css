@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+a{
+  text-decoration: none;
+  color: black;
+  transition: .3s;
+}
+a:hover{
+  transition: .3s;
+  color: rgb(142, 142, 142);
+}
+
+form{
+  margin: auto;
+  width: 50%;
+}
+input{
+  margin: 10px;
+}
+
+.logoutBtn{
+    border: 1px solid black;
+    border-radius: 20px;
+    float: right;
+}
+
