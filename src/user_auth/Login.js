@@ -21,7 +21,7 @@ function LoginForm() {
     <div className="App">
       <Layout />
       <h1>Bejelenetkezés</h1>
-      <form onSubmit={handleLogin}>
+      <form className="loginForm" onSubmit={handleLogin}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input

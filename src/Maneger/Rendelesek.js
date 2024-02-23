@@ -1,6 +1,9 @@
+import Layout from "../Layout";
+
 export default function Rendeles() {
   return (
     <div className="App">
+      <Layout/>
       Rendelések
       <div className="container mt-3">
         <table className="table table-bordered">

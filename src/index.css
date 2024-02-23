@@ -12,28 +12,22 @@ code {
     monospace;
 }
 
-
-a{
-  text-decoration: none;
-  color: black;
-  transition: .3s;
-}
-a:hover{
-  transition: .3s;
-  color: rgb(142, 142, 142);
-}
-
 form{
   margin: auto;
   width: 50%;
 }
-input{
-  margin: 10px;
+
+
+.loginForm{
+  width: 30%;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(164, 162, 162);
 }
 
-.logoutBtn{
-    border: 1px solid black;
-    border-radius: 20px;
-    float: right;
+#jelszoModal{
+  position: absolute;
+  left: 25%;
+  width: 50%;
 }
-

@@ -8,7 +8,7 @@ const Layout = () => {
   console.log(user);
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">
           Home
         </Link>
@@ -21,13 +21,24 @@ const Layout = () => {
                     Profil
                   </Link>
                 </li>
+                {user?.permission <= 1 ? (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/rend">
+                        Rendelések
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
                 <li className="nav-item">
                   <LogoutForm />
                 </li>
               </>
             ) : (
               <>
-                <li className="nav-item">
+                <li className="nav-item" id="login">
                   <Link className="nav-link" to="/login">
                     Login
                   </Link>
@@ -39,14 +50,10 @@ const Layout = () => {
                 </li>
               </>
             )}
-            {/* <li className="nav-item">
-              <a className="nav-link">
-                <LogoutForm />
-              </a>
-            </li> */}
           </ul>
         </div>
       </nav>
+
       <article>
         {/* Ide kerül majd az útvonalak/linkek által meghatározott tartalom */}
         <Outlet />
