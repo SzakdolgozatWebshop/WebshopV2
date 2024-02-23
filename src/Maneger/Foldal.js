@@ -1,5 +1,4 @@
-
-import kep1 from "../kep/59.jpg";
+import Fooldalimg from "../tesztek/uploder.js";
 export default function Foldal() {
   return (
   
@@ -9,15 +8,16 @@ export default function Foldal() {
         <div className="col">asdads</div>
         <div className="col">hello 2</div>
         <div className="col">helllo 3s</div>
-        <div className="col">helllo 4a  </div>
+        <div className="col">helllo 4a</div>
       </div>
       <div className="row">
-        <div className="col"><img src={kep1} width="260" height="200"/></div>
-        <div className="col">hello 2</div>
+        <div className="col"><Fooldalimg/></div>
+        <div className="col"></div>
         <div className="col">helllo 3s</div>
         <div className="col">helllo 4a  </div>
       </div>
       </div>
     </div>
+    
   );
 }
