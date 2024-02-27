@@ -1,40 +1,33 @@
 import './App.css';
-//import LoginForm from './Login';
-//import RegForm from './Reg';
+import LoginForm from "./user_auth/Login";
+import RegForm from "./user_auth/Reg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Admin from "./pages/Admin";
+import { AuthProvider } from "./context/AuthContext";
+import Succ_reg from "./user_auth/succ_reg";
+import Public from "./pages/Public";
+import Dashboard from "./pages/Dashboard";
+import AuthLayout from "./layouts/AuthLayout";
+import GuestLayout from "./layouts/GusetLayout";
+import Profil from "./Maneger/Profil";
+import Rendeles from "./Maneger/Rendelesek";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <table>
-          <th>
-            <td>
-              <h1>Webshop</h1>
-            </td>
-            <td>
-              <RegForm></RegForm>
-            </td>
-          </th>
-        </table>
-      </header>
-      <body className="App-body">
-        <div>
-          tablaelemek
-        </div>
-      </body>
-      <footer className="App-footer">
-        <li>
-          <il>
-            <div><a link="https://github.com/SzakdolgozatWebshop">Github</a></div>
-          </il>
-          <il>
-            <div>...</div>
-          </il>
-          <il>
-            <div>...</div>
-          </il>
-        </li>
-      </footer>
+      <Routes>
+        <Route element={<AuthLayout />}>
+          <Route path="/rend" element={<Rendeles />} />
+        </Route>
+        <Route path="/admin" element={<Admin />} />
+
+        <Route path="/" element={<Public />} />
+        <Route path="/dashboard" element={<Profil />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegForm />} />
+        <Route path="/succreg" element={<Succ_reg />} />
+      </Routes>
     </div>
   );
 }

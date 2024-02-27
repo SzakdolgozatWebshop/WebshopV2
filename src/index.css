@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+form{
+  margin: auto;
+  width: 50%;
+}
+
+
+.loginForm{
+  width: 30%;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(164, 162, 162);
+}
+
+#jelszoModal{
+  position: absolute;
+  left: 25%;
+  width: 50%;
+}
