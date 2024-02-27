@@ -15,14 +15,16 @@ function LoginForm() {
   let err = "";
   console.log(error);
   if(error.message == "Request failed with status code 422"){
-    err = "Helytelen email cím vagy jelszó"
+    err = "Helytelen email cím vagy jelszó!"
   }
   return (
     <div className="App">
       <Layout />
-      <h1>Bejelenetkezés</h1>
+      <div className="container bg-primary rounded-3" >
+      
       <form onSubmit={handleLogin}>
-        <div className="form-group">
+        <div className="form-group ">
+        <h1 className="text-center">Bejelenetkezés</h1>
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input
             type="email"
@@ -46,11 +48,12 @@ function LoginForm() {
           />
           <p style={{color: "red"}}>{err}</p>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn  btn-success">
           Login
         </button>
+        
       </form>
-      
+      </div>
     </div>
   );
 }

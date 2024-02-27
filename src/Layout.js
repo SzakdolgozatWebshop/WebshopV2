@@ -18,12 +18,12 @@ const Layout = () => {
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/keszlet">
-                    Keszlet
+                    Felhasználók
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/Rendelesek">
-                    Rendelesek
+                    Keszlet felvitelt
                   </Link>
                 </li>
                 

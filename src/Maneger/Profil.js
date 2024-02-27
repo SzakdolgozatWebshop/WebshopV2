@@ -24,9 +24,9 @@ export default function Profil() {
       <div
         id="jelszoModal"
 
-        className="modal mt-3"
+        className="modal"
       >
-      <div className="modal-dialog "></div>
+      <div className="modal-dialog  bg-secondary ">
         <div className="modal-content ">
           <div className="modal-header">
             <h4 className="modal-title ">Jelszó modositása</h4>
@@ -63,7 +63,7 @@ export default function Profil() {
               Close
             </button>
           </div>
-         
+          </div>
         </div>
       </div>
       </form>
