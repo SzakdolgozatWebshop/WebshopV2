@@ -5,7 +5,7 @@ const Layout = () => {
     <>
     <div>
     
-      <nav>
+      <nav style={{paddingBottom:"10px"}}>
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <Link className="nav-link active" to="/">Főoldal</Link>

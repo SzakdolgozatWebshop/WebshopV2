@@ -29,9 +29,9 @@ export default function Keszlet() {
       <div
         id="LeirasModal"
         style={{ display: "none" }}
-        className="modal"
+        className="modal  bg-secondary p-3 text-dark bg-opacity-75"
       >
-      <div className="modal-dialog"></div>
+      <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title">Jelszó modositása</h4>
@@ -68,7 +68,7 @@ export default function Keszlet() {
               Close
             </button>
           </div>
-         
+          </div>
         </div>
       </div>
       </form>

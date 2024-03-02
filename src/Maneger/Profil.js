@@ -1,6 +1,6 @@
 export default function Profil() {
   return (
-    <div className="App">
+    <div className="App ">
       Profil
       
         <div  className="container "style={{ paddingTop: "60px" }}>
@@ -21,10 +21,10 @@ export default function Profil() {
       <div
         id="jelszoModal"
 
-        className="modal mt-3"
+        className="modal  bg-secondary p-3 text-dark bg-opacity-75"
       >
-      <div className="modal-dialog "></div>
-        <div className="modal-content ">
+      <div className="modal-dialog ">
+        <div className="modal-content  ">
           <div className="modal-header">
             <h4 className="modal-title ">Jelszó modositása</h4>
           </div>
@@ -60,7 +60,7 @@ export default function Profil() {
               Close
             </button>
           </div>
-         
+          </div>
         </div>
       </div>
       </form>

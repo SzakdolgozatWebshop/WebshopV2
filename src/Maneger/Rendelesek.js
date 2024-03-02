@@ -29,9 +29,9 @@ export default function Rendeles() {
         </table>
       </div>
       <form action="/action_page.php" method="post">
-        <div id="RendelesModal" style={{ display: "none" }} className="modal ">
+        <div id="RendelesModal" style={{ display: "none" }} className="modal  bg-secondary p-3 text-dark bg-opacity-75 ">
           <div className="modal-dialog">
-          <div className="modal-content" style={{backgroundColor:"gray"}}>
+          <div className="modal-content" >
             <div className="modal-header" >
               <table className="table table-bordered">
               <tbody>
@@ -61,8 +61,9 @@ export default function Rendeles() {
                 </tr>
                 </tbody>
               </table>
-              <p style={{ paddingTop: "10px" }}>
-                <button type="submit" className="btn btn-danger">
+              <p style={{ paddingTop: "10px",
+            padding:"10px" }}>
+                <button type="submit" className="btn p-3 btn-danger">
                   Küldés
                 </button>
               </p>
