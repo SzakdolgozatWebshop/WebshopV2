@@ -1,9 +1,13 @@
+import Layout from "../Layout";
+
 export default function Keszlet() {
+  
   return (
 
     <div className="App">
+      <Layout />
       Termék Lista
-      <div className="container mt-3">
+      <div className="container ">
       <table className="table table-bordered ">
         <tbody>
         <tr>

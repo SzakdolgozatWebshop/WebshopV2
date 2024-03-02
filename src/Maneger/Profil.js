@@ -1,6 +1,9 @@
+import Layout from "../Layout";
+
 export default function Profil() {
   return (
-    <div className="App ">
+    <div className="App">
+            <Layout />
       Profil
       
         <div  className="container "style={{ paddingTop: "60px" }}>

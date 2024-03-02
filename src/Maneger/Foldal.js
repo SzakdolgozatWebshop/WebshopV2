@@ -1,5 +1,4 @@
-import kep1 from "../kep/59.jpg";
-
+import Fooldalimg from "../tesztek/uploder.js";
 export default function Foldal() {
   return (
     <div className="App">
@@ -69,5 +68,6 @@ export default function Foldal() {
         </div>
       </div>
     </div>
+    
   );
 }
