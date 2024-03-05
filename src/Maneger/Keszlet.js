@@ -1,88 +1,129 @@
 import Layout from "../Layout";
+import React, { useState, useEffect } from "react";
 
 export default function Keszlet() {
-  
-  return (
+  const [termek, setTermek] = useState([]);
+  const [selectedTermek, setSelectedTermek] = useState([]);
 
+  useEffect(() => {
+    fetch("http://localhost:8001/api/termekShow")
+      .then((response) => response.json())
+      .then((data) => setTermek(data))
+      .catch((error) => console.error("Error fetching users:", error));
+  }, []);
+  const handleBovebbenClick = (termek) => {
+    setSelectedTermek(termek);
+    document.getElementById("LeirasModal").style.display = "block";
+  };
+
+  const closeModal = () => {
+    setSelectedTermek([]);
+    document.getElementById("LeirasModal").style.display = "none";
+  };
+  console.log(termek);
+  return (
     <div className="App">
       <Layout />
       Termék Lista
-      <div className="container ">
-      <table className="table table-bordered ">
-        <tbody>
-        <tr>
-          <th>Termék ID</th>
-          <th>Termék Neve</th>
-          <th>Leirás</th>
-          <th>Mennyiség</th>
-          <th>Ára</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Predator</td>
-          <td>Laptop</td>
-          <td>1</td>
-          <td>50000</td>
-          <td><button type="button" onClick={Leiras} className="btn btn-danger">Bővebben</button></td>
-        </tr>
-        </tbody>
-      </table>
+      <div className="container">
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Termék ID</th>
+              <th>Márka Neve</th>
+              <th>Termék Neve</th>
+              <th>Leírás</th>
+              <th>Mennyiség</th>
+              <th>Ára</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {termek.map((termeks) => (
+              <tr key={termeks.ter_id}>
+                <td>{termeks.ter_id}</td>
+                <td>{termeks.marka}</td>
+                <td>{termeks.elnevezes}</td>
+                <td>{termeks.elnevezes}</td>
+                <td>{termeks.keszlet}</td>
+                <td>{termeks.eladasi_ar} Ft</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleBovebbenClick(termeks)}
+                    className="btn btn-danger"
+                  >
+                    Bővebben
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <form action="/action_page.php" method="post">
-      <div
-        id="LeirasModal"
-        style={{ display: "none" }}
-        className="modal  bg-secondary p-3 text-dark bg-opacity-75"
-      >
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h4 className="modal-title">Jelszó modositása</h4>
-          </div>
-          <div className="modal-body">
-            <p style={{ paddingTop: "5px" }}>Jelszó régi jelszó</p>
-            <input
-              type="password"
-              placeholder="Régi jelszó"
-              name="regjelszo"
-            ></input>
-            <p style={{ paddingTop: "5px" }}>Jelszó modositása</p>
-            <input
-              type="password"
-              placeholder="Új jelszó"
-              name="ujelszo"
-            ></input>
-            <p style={{ paddingTop: "2px" }}></p>
-            <input
-              type="password"
-              placeholder="Új jelszó újra"
-              name="ujelszo"
-            ></input>
-            <p style={{ paddingTop: "10px" }}>
-              <button type="submit" className="btn btn-danger">Küldés</button>
-            </p>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={LeirasBezar}
-            >
-              Close
-            </button>
-          </div>
+      {selectedTermek && (
+        <form>
+        <div
+          id="LeirasModal"
+          className="modal bg-secondary p-3 text-dark bg-opacity-75"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Termék módosítás</h4>
+                <button type="button" className="btn-close"  onClick={closeModal}></button>
+              </div>
+              <div className="modal-body">
+                <p style={{ paddingTop: "5px" }}>
+                  Termék ID: {selectedTermek.ter_id}
+                </p>
+                <p style={{ paddingTop: "5px" }}>
+                  Márka Neve:
+                  <input
+                    type="text"
+                    placeholder={selectedTermek.marka}
+                    name="elnevezes"
+                  ></input>
+                </p>
+                <p style={{ paddingTop: "5px" }}>
+                  Termék Neve:
+                  <input
+                    type="text"
+                    placeholder={selectedTermek.elnevezes}
+                    name="elnevezes"
+                  ></input>
+                </p>
+                <p style={{ paddingTop: "5px" }}>
+                  Mennyiség:{" "}
+                  <input
+                    type="text"
+                    placeholder={selectedTermek.keszlet}
+                    name="keszlet"
+                  ></input>
+                </p>
+                <p style={{ paddingTop: "5px" }}>
+                  Eladási ár:{" "}
+                  <input
+                    type="text"
+                    placeholder={selectedTermek.eladasi_ar}
+                    name="keszlet"
+                  ></input>{" "}
+                  Ft
+                </p>
+                <div className="modal-footer">
+                  <p style={{ paddingTop: "10px" }}>
+                    <button type="submit" className="btn btn-danger">
+                      Küldés
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      </form>
+        </form>
+      )}
+
     </div>
-    
   );
-}
-function Leiras(){
-  document.getElementById("LeirasModal").style.display = "block";
-}
-function LeirasBezar() {
-  document.getElementById("LeirasModal").style.display = "none";
 }

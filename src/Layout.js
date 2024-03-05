@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const Layout = () => {
   const { user } = useAuthContext();
-  console.log(user);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
