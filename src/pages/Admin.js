@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import useAuthContext from "../context/AuthContext";
 import Layout from "../Layout";
 
 const Admin = () => {
-  const { user, getUser } = useAuthContext();
+  const { user } = useAuthContext();
   
   
   return (
@@ -13,4 +12,4 @@ const Admin = () => {
     </div>
   );
 };
-export default Admin;
+export default Admin; 

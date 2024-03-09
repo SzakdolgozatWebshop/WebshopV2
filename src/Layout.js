@@ -1,11 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
 import LogoutForm from "./user_auth/Logout";
 import useAuthContext from "./context/AuthContext";
-import { useEffect } from "react";
+import { useState } from "react";
 
 const Layout = () => {
   const { user } = useAuthContext();
-  console.log(user);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,6 +27,28 @@ const Layout = () => {
                       <Link className="nav-link" to="/rend">
                         Rendelések
                       </Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {user?.permission === 0 ? (
+                  <>
+                    <li className="nav-item dropdown">
+                      <Link
+                        className="nav-link dropdown-toggle"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                      >
+                        Admin
+                      </Link>
+                      <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`} aria-labelledby="navbarDropdown">
+                        <li><Link className="dropdown-item" to="/admin">Admin Dashboard</Link></li>
+                        <li><Link className="dropdown-item" to="/umanage">Felhasználók kezelése</Link></li>
+                      </ul>
                     </li>
                   </>
                 ) : (

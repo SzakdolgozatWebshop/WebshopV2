@@ -10,6 +10,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import GuestLayout from "./layouts/GusetLayout";
 import Profil from "./Maneger/Profil";
 import Rendeles from "./Maneger/Rendelesek";
+import Umanage from "./pages/Umanage";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/rend" element={<Rendeles />} />
         </Route>
         <Route path="/admin" element={<Admin />} />
-
+        <Route path="/umanage" element={<Umanage />}/>
         <Route path="/" element={<Public />} />
         <Route path="/dashboard" element={<Profil />} />
         <Route path="/login" element={<LoginForm />} />
