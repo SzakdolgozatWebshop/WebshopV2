@@ -9,20 +9,20 @@ export default function Rendelesek() {
   const firstHalf = leiras.slice(0, Math.ceil(leiras.length / 2));
 
   useEffect(() => {
-    fetch("http://localhost:8001/api/rendeleShow")
+    fetch("http://localhost:8000/api/rendeleShow")
       .then((response) => response.json())
       .then((data) => setRendeles(data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);
   const handleBovebbenClick = (Rendeles) => {
-    fetch(`http://localhost:8001/api/rendtabla/${Rendeles.rend_szam}`)
+    fetch(`http://localhost:8000/api/rendtabla/${Rendeles.rend_szam}`)
       .then((response) => response.json())
       .then((data) => {
         setTabla(data);
 
         const termekFetches = data.map((item) => {
           return fetch(
-            `http://localhost:8001/api/rendtablaleiras/${item.Termek}`
+            `http://localhost:8000/api/rendtablaleiras/${item.Termek}`
           ).then((response) => response.json());
         });
 
@@ -115,9 +115,9 @@ export default function Rendelesek() {
                           <th>Mennyiség</th>
                           <th>Készleten</th>
                           <th>Eladási ár</th>
-                          {leiras.map((leirass) => (
-                            <th>{leirass.elnevezes}</th>
-                          ))}
+                          {/* {leiras.map((leirass) => (
+                            <th></th>
+                          ))} */}
                         </tr>
                       </thead>
                       <tbody>
@@ -136,7 +136,7 @@ export default function Rendelesek() {
                               )
                               .map((leirass) => (
                                 <td key={leirass.id}>
-                                  {leirass.ertek} {leirass.mertekegyseg}
+                                  {leirass.elnevezes}{leirass.ertek} {leirass.mertekegyseg}
                                 </td>
                               ))}
                           </tr>

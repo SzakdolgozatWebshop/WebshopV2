@@ -17,11 +17,11 @@
       }
     }, []);
 
-    const csrf = () => axios.get("http://localhost:8001/sanctum/csrf-cookie");
+    const csrf = () => axios.get("http://localhost:8000/sanctum/csrf-cookie");
 
     const getUser = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8001/api/user");
+        const { data } = await axios.get("http://localhost:8000/api/user");
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
       } catch (error) {
@@ -32,7 +32,7 @@
     const login = async ({ ...data }) => {
       await csrf();
       try {
-        await axios.post("http://localhost:8001/api/login", data);
+        await axios.post("http://localhost:8000/api/login", data);
         await getUser();
         navigate("/dashboard");
       } catch (error) {
@@ -54,7 +54,7 @@
 
     const register = async ({ ...data }) => {
       try {
-        await axios.post("http://localhost:8001/register", data);
+        await axios.post("http://localhost:8000/register", data);
         console.log("Registration successful.");
         // Handle successful registration (e.g., redirect to dashboard)
         navigate("/succreg");

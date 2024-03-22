@@ -13,7 +13,7 @@ export default function Keszlet() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8001/api/termekShow")
+    fetch("http://localhost:8000/api/termekShow")
       .then((response) => response.json())
       .then((data) => setTermek(data))
       .catch((error) => console.error("Error fetching users:", error));
@@ -21,7 +21,7 @@ export default function Keszlet() {
   const handleBovebbenClick = (termek) => {
 
     setSelectedTermek(termek);
-    fetch(`http://localhost:8001/api/leiras/${termek.ter_id}`)
+    fetch(`http://localhost:8000/api/leiras/${termek.ter_id}`)
       .then((response) => response.json())
       .then((data) => setLeiras(data));
     document.getElementById("LeirasModal").style.display = "block";
@@ -51,7 +51,7 @@ export default function Keszlet() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:8001/api/keszlet/mod/${selectedTermek.ter_id}`, {
+    fetch(`http://localhost:8000/api/keszlet/mod/${selectedTermek.ter_id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
