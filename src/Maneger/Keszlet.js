@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 export default function Keszlet() {
   const [termek, setTermek] = useState([]);
   const [selectedTermek, setSelectedTermek] = useState([]);
+  const [Leiras, setLeiras] = useState([]);
   const [formData, setFormData] = useState({
     marka: "",
     elnevezes: "",
@@ -11,9 +12,18 @@ export default function Keszlet() {
     eladasi_ar: "",
   });
 
-  Toltes();
+  useEffect(() => {
+    fetch("http://localhost:8001/api/termekShow")
+      .then((response) => response.json())
+      .then((data) => setTermek(data))
+      .catch((error) => console.error("Error fetching users:", error));
+  }, []);
   const handleBovebbenClick = (termek) => {
+
     setSelectedTermek(termek);
+    fetch(`http://localhost:8001/api/leiras/${termek.ter_id}`)
+      .then((response) => response.json())
+      .then((data) => setLeiras(data));
     document.getElementById("LeirasModal").style.display = "block";
   };
   useEffect(() => {
@@ -50,22 +60,15 @@ export default function Keszlet() {
     })
       .then((response) => response.json())
       .then((data) => {
-            console.log("Success:", data);
-            window.location.reload();
+      //console.log("Success:", data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
-  function Toltes() {
-    useEffect(() => {
-      fetch("http://localhost:8001/api/termekShow")
-        .then((response) => response.json())
-        .then((data) => setTermek(data))
-        .catch((error) => console.error("Error fetching users:", error));
-    }, []);
-  }
-  console.log(formData);
+
+
   return (
     <div className="App">
       <Layout />
@@ -89,7 +92,7 @@ export default function Keszlet() {
                 <td>{termeks.ter_id}</td>
                 <td>{termeks.marka}</td>
                 <td>{termeks.elnevezes}</td>
-                <td>{termeks.elnevezes}</td>
+                <td>A gombon</td>
                 <td>{termeks.keszlet}</td>
                 <td>{termeks.eladasi_ar} Ft</td>
                 <td>
@@ -153,6 +156,7 @@ export default function Keszlet() {
                       name="keszlet"
                     ></input>
                   </p>
+
                   <p style={{ paddingTop: "5px" }}>
                     Eladási ár:{" "}
                     <input
@@ -163,6 +167,26 @@ export default function Keszlet() {
                     ></input>{" "}
                     Ft
                   </p>
+                  <div className="container border">
+                    <h1>Leiras:</h1>
+                    <table className="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Érték</th>
+                          <th>Mértékegység</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Leiras.map((lierass) => (
+                          <tr key={lierass.ertek}>
+
+                            <td>{lierass.ertek}</td>
+                            <td>{lierass.mertekegyseg}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                   <div className="modal-footer">
                     <p style={{ paddingTop: "10px" }}>
                       <button type="submit" className="btn btn-danger">
