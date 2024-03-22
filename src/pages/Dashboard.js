@@ -4,7 +4,6 @@ import useAuthContext from "../context/AuthContext";
 
 function Dashboard() {
   const { user, getUser } = useAuthContext();
-  console.log(user);
 
   useEffect(() => {
     if (!user) {

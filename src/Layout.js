@@ -14,6 +14,35 @@ const Layout = () => {
         </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
+          {user?.permission == 0 ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
+                    Keszlet felvitelt
+                  </Link>
+                </li>
+                
+              </>
+            ) : (
+              <></>
+            )}
+            {user?.permission <= 1 ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/keszlet">
+                    Keszlet
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/Rendelesek">
+                    Rendelesek
+                  </Link>
+                </li>
+                
+              </>
+            ) : (
+              <></>
+            )}
             {user ? (
               <>
                 <li className="nav-item">
@@ -21,17 +50,6 @@ const Layout = () => {
                     Profil
                   </Link>
                 </li>
-                {user?.permission <= 1 ? (
-                  <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/rend">
-                        Rendelések
-                      </Link>
-                    </li>
-                  </>
-                ) : (
-                  <></>
-                )}
                 {user?.permission === 0 ? (
                   <>
                     <li className="nav-item dropdown">
