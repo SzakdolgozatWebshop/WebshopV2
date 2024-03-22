@@ -31,3 +31,10 @@ form{
   left: 25%;
   width: 50%;
 }
+
+.table{
+  width: 60%;
+  font-size: 120%;
+  margin: auto;
+  margin-top: 40px;
+}

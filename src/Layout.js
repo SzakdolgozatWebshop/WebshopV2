@@ -1,11 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
 import LogoutForm from "./user_auth/Logout";
 import useAuthContext from "./context/AuthContext";
-import { useEffect } from "react";
+import { useState } from "react";
 
 const Layout = () => {
   const { user } = useAuthContext();
-  console.log(user);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -14,6 +14,35 @@ const Layout = () => {
         </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
+          {user?.permission == 0 ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
+                    Keszlet felvitelt
+                  </Link>
+                </li>
+                
+              </>
+            ) : (
+              <></>
+            )}
+            {user?.permission <= 1 ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/keszlet">
+                    Keszlet
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/Rendelesek">
+                    Rendelesek
+                  </Link>
+                </li>
+                
+              </>
+            ) : (
+              <></>
+            )}
             {user ? (
               <>
                 <li className="nav-item">
@@ -21,12 +50,23 @@ const Layout = () => {
                     Profil
                   </Link>
                 </li>
-                {user?.permission <= 1 ? (
+                {user?.permission === 0 ? (
                   <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/rend">
-                        Rendelések
+                    <li className="nav-item dropdown">
+                      <Link
+                        className="nav-link dropdown-toggle"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                      >
+                        Admin
                       </Link>
+                      <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`} aria-labelledby="navbarDropdown">
+                        <li><Link className="dropdown-item" to="/admin">Admin Dashboard</Link></li>
+                        <li><Link className="dropdown-item" to="/umanage">Felhasználók kezelése</Link></li>
+                      </ul>
                     </li>
                   </>
                 ) : (
